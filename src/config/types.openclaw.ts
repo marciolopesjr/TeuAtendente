@@ -24,13 +24,6 @@ import type { PluginsConfig } from "./types.plugins.js";
 import type { SkillsConfig } from "./types.skills.js";
 import type { ToolsConfig } from "./types.tools.js";
 
-export type LicenseConfig = {
-  /** The license key for the commercial version. */
-  key?: string;
-  /** The plan associated with the license (e.g., "pro", "enterprise"). */
-  plan?: "free" | "pro" | "enterprise";
-};
-
 export type OpenClawConfig = {
   meta?: {
     /** Last OpenClaw version that wrote this config. */
@@ -38,7 +31,6 @@ export type OpenClawConfig = {
     /** ISO timestamp when this config was last written. */
     lastTouchedAt?: string;
   };
-  license?: LicenseConfig;
   auth?: AuthConfig;
   env?: {
     /** Opt-in: import missing secrets from a login shell environment (exec `$SHELL -l -c 'env -0'`). */

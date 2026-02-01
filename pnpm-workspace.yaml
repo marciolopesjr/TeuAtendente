@@ -1,6 +1,7 @@
 packages:
   - .
   - ui
+  - landing-page
   - packages/*
   - extensions/*
 
