@@ -1,4 +1,5 @@
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
+import { logLicenseStatus, validateLicense } from "../commercial/license-service.js";
 import { initSubagentRegistry } from "../agents/subagent-registry.js";
 import { registerSkillsChangeListener } from "../agents/skills/refresh.js";
 import type { CanvasHostServer } from "../canvas-host/server.js";
@@ -210,6 +211,11 @@ export async function startGatewayServer(
   }
 
   const cfgAtStart = loadConfig();
+
+  // Validate commercial license
+  const licenseStatus = validateLicense(cfgAtStart.license?.key);
+  logLicenseStatus(licenseStatus);
+
   const diagnosticsEnabled = isDiagnosticsEnabled(cfgAtStart);
   if (diagnosticsEnabled) {
     startDiagnosticHeartbeat();
